@@ -1,0 +1,2018 @@
+# Rime schema settings
+# encoding: utf-8
+
+schema:
+  schema_id: g9shape
+  name: "九形字格"
+  version: "0.1"
+  author:
+    - itroad
+  description: |
+    模擬在英文鍵盤使用九方字形輸入法
+    一丨／ 位置輸入qwe或tyu
+    ・乙口 位置輸入asd或ghj
+    十✕冂 位置輸入zxc或bnm
+    標點 或 第二鍵選字[姓氏] 或 第三鍵選字[整體字] 或 初始提示 輸入fvik
+    上頁 輸入rlo
+    下頁 輸入p
+    清除 輸入space
+
+engine:
+  processors:
+    - ascii_composer
+    - recognizer
+    - key_binder
+    - speller
+    - punctuator
+    - selector
+    - navigator
+    - express_editor
+  segmentors:
+    - punct_segmentor
+    - abc_segmentor
+  translators:
+    - punct_translator
+    - table_translator
+
+recognizer:
+  import_preset: default
+  patterns:
+    reverse_lookup: "`[a-k]*'?$"
+
+
+speller:
+  alphabet: "abcdefghijk"
+  delimiter: " '" 
+  max_code_length: 4
+  auto_clear: auto
+
+menu:
+  page_size: 9
+
+
+punctuator:
+  import_preset: default
+
+
+key_binder:
+  import_preset: default
+  bindings:
+    - { when: always, accept: "q", send: "g" }
+    - { when: always, accept: "t", send: "g" }
+    - { when: always, accept: "w", send: "h" }
+    - { when: always, accept: "y", send: "h" }
+    - { when: always, accept: "e", send: "i" } 
+    - { when: always, accept: "u", send: "i" }
+    - { when: always, accept: "a", send: "d" }
+    - { when: always, accept: "g", send: "d" }
+    - { when: always, accept: "s", send: "e" }
+    - { when: always, accept: "h", send: "e" }
+    - { when: always, accept: "d", send: "f" }
+    - { when: always, accept: "j", send: "f" }
+    - { when: always, accept: "z", send: "a" }
+    - { when: always, accept: "b", send: "a" }
+    - { when: always, accept: "x", send: "b" }
+    - { when: always, accept: "n", send: "b" }
+    - { when: always, accept: "c", send: "c" }
+    - { when: always, accept: "m", send: "c" }
+    - { when: always, accept: "f", send: "j" }
+    - { when: always, accept: "v", send: "j" }
+    - { when: always, accept: "i", send: "j" } 
+    - { when: always, accept: "k", send: "j" }
+    - { when: always, accept: "r", send: "Page_Down" } 
+    - { when: always, accept: "l", send: "Page_Down" }  
+    - { when: always, accept: "o", send: "Page_Down" }
+    - { when: always, accept: "p", send: "Page_Up" }
+    - { when: paging, accept: space, send: "Page_Down" }
+    - {when: composing, accept: space, send: Escape}
+
+translator:
+  dictionary: g9shape
+  enable_sentence: false
+  max_phrase_length: 4
+  preedit_format:
+    - xform/^aaa/十艹十/
+    - xform/^aab/十艹✕/
+    - xform/^aac/十艹冂/
+    - xform/^aad/十艹・/
+    - xform/^aae/十艹乙/
+    - xform/^aaf/十艹口/
+    - xform/^aag/十艹一/
+    - xform/^aah/十艹丨/
+    - xform/^aai/十艹／/
+    - xform/^aaj/十艹/
+    - xform/^aba/十廿十/
+    - xform/^abb/十廿✕/
+    - xform/^abc/十廿冂/
+    - xform/^abd/十廿・/
+    - xform/^abe/十廿乙/
+    - xform/^abf/十廿口/
+    - xform/^abg/十廿一/
+    - xform/^abh/十廿丨/
+    - xform/^abi/十廿／/
+    - xform/^abj/十廿/
+    - xform/^aca/十車十/
+    - xform/^acb/十車✕/
+    - xform/^acc/十車冂/
+    - xform/^acd/十車・/
+    - xform/^ace/十車乙/
+    - xform/^acf/十車口/
+    - xform/^acg/十車一/
+    - xform/^ach/十車丨/
+    - xform/^aci/十車／/
+    - xform/^acj/十車/
+    - xform/^ada/十丰十/
+    - xform/^adb/十丰✕/
+    - xform/^adc/十丰冂/
+    - xform/^add/十丰・/
+    - xform/^ade/十丰乙/
+    - xform/^adf/十丰口/
+    - xform/^adg/十丰一/
+    - xform/^adh/十丰丨/
+    - xform/^adi/十丰／/
+    - xform/^adj/十丰/
+    - xform/^aea/十木十/
+    - xform/^aeb/十木✕/
+    - xform/^aec/十木冂/
+    - xform/^aed/十木・/
+    - xform/^aee/十木乙/
+    - xform/^aef/十木口/
+    - xform/^aeg/十木一/
+    - xform/^aeh/十木丨/
+    - xform/^aei/十木／/
+    - xform/^aej/十木/
+    - xform/^afa/十耂十/
+    - xform/^afb/十耂✕/
+    - xform/^afc/十耂冂/
+    - xform/^afd/十耂・/
+    - xform/^afe/十耂乙/
+    - xform/^aff/十耂口/
+    - xform/^afg/十耂一/
+    - xform/^afh/十耂丨/
+    - xform/^afi/十耂／/
+    - xform/^afj/十耂/
+    - xform/^aga/十十十/
+    - xform/^agb/十十✕/
+    - xform/^agc/十十冂/
+    - xform/^agd/十十・/
+    - xform/^age/十十乙/
+    - xform/^agf/十十口/
+    - xform/^agg/十十一/
+    - xform/^agh/十十丨/
+    - xform/^agi/十十／/
+    - xform/^agj/十十/
+    - xform/^aha/十扌十/
+    - xform/^ahb/十扌✕/
+    - xform/^ahc/十扌冂/
+    - xform/^ahd/十扌・/
+    - xform/^ahe/十扌乙/
+    - xform/^ahf/十扌口/
+    - xform/^ahg/十扌一/
+    - xform/^ahh/十扌丨/
+    - xform/^ahi/十扌／/
+    - xform/^ahj/十扌/
+    - xform/^aia/十土十/
+    - xform/^aib/十土✕/
+    - xform/^aic/十土冂/
+    - xform/^aid/十土・/
+    - xform/^aie/十土乙/
+    - xform/^aif/十土口/
+    - xform/^aig/十土一/
+    - xform/^aih/十土丨/
+    - xform/^aii/十土／/
+    - xform/^aij/十土/
+    - xform/^baa/✕𡗗十/
+    - xform/^bab/✕𡗗✕/
+    - xform/^bac/✕𡗗冂/
+    - xform/^bad/✕𡗗・/
+    - xform/^bae/✕𡗗乙/
+    - xform/^baf/✕𡗗口/
+    - xform/^bag/✕𡗗一/
+    - xform/^bah/✕𡗗丨/
+    - xform/^bai/✕𡗗／/
+    - xform/^baj/✕𡗗/
+    - xform/^bba/✕戈十/
+    - xform/^bbb/✕戈✕/
+    - xform/^bbc/✕戈冂/
+    - xform/^bbd/✕戈・/
+    - xform/^bbe/✕戈乙/
+    - xform/^bbf/✕戈口/
+    - xform/^bbg/✕戈一/
+    - xform/^bbh/✕戈丨/
+    - xform/^bbi/✕戈／/
+    - xform/^bbj/✕戈/
+    - xform/^bca/✕七十/
+    - xform/^bcb/✕七✕/
+    - xform/^bcc/✕七冂/
+    - xform/^bcd/✕七・/
+    - xform/^bce/✕七乙/
+    - xform/^bcf/✕七口/
+    - xform/^bcg/✕七一/
+    - xform/^bch/✕七丨/
+    - xform/^bci/✕七／/
+    - xform/^bcj/✕七/
+    - xform/^bda/✕力十/
+    - xform/^bdb/✕力✕/
+    - xform/^bdc/✕力冂/
+    - xform/^bdd/✕力・/
+    - xform/^bde/✕力乙/
+    - xform/^bdf/✕力口/
+    - xform/^bdg/✕力一/
+    - xform/^bdh/✕力丨/
+    - xform/^bdi/✕力／/
+    - xform/^bdj/✕力/
+    - xform/^bea/✕女十/
+    - xform/^beb/✕女✕/
+    - xform/^bec/✕女冂/
+    - xform/^bed/✕女・/
+    - xform/^bee/✕女乙/
+    - xform/^bef/✕女口/
+    - xform/^beg/✕女一/
+    - xform/^beh/✕女丨/
+    - xform/^bei/✕女／/
+    - xform/^bej/✕女/
+    - xform/^bfa/✕大十/
+    - xform/^bfb/✕大✕/
+    - xform/^bfc/✕大冂/
+    - xform/^bfd/✕大・/
+    - xform/^bfe/✕大乙/
+    - xform/^bff/✕大口/
+    - xform/^bfg/✕大一/
+    - xform/^bfh/✕大丨/
+    - xform/^bfi/✕大／/
+    - xform/^bfj/✕大/
+    - xform/^bga/✕ナ十/
+    - xform/^bgb/✕ナ✕/
+    - xform/^bgc/✕ナ冂/
+    - xform/^bgd/✕ナ・/
+    - xform/^bge/✕ナ乙/
+    - xform/^bgf/✕ナ口/
+    - xform/^bgg/✕ナ一/
+    - xform/^bgh/✕ナ丨/
+    - xform/^bgi/✕ナ／/
+    - xform/^bgj/✕ナ/
+    - xform/^bha/✕又十/
+    - xform/^bhb/✕又✕/
+    - xform/^bhc/✕又冂/
+    - xform/^bhd/✕又・/
+    - xform/^bhe/✕又乙/
+    - xform/^bhf/✕又口/
+    - xform/^bhg/✕又一/
+    - xform/^bhh/✕又丨/
+    - xform/^bhi/✕又／/
+    - xform/^bhj/✕又/
+    - xform/^bia/✕犭十/
+    - xform/^bib/✕犭✕/
+    - xform/^bic/✕犭冂/
+    - xform/^bid/✕犭・/
+    - xform/^bie/✕犭乙/
+    - xform/^bif/✕犭口/
+    - xform/^big/✕犭一/
+    - xform/^bih/✕犭丨/
+    - xform/^bii/✕犭／/
+    - xform/^bij/✕犭/
+    - xform/^caa/冂匚十/
+    - xform/^cab/冂匚✕/
+    - xform/^cac/冂匚冂/
+    - xform/^cad/冂匚・/
+    - xform/^cae/冂匚乙/
+    - xform/^caf/冂匚口/
+    - xform/^cag/冂匚一/
+    - xform/^cah/冂匚丨/
+    - xform/^cai/冂匚／/
+    - xform/^caj/冂匚/
+    - xform/^cba/冂コ十/
+    - xform/^cbb/冂コ✕/
+    - xform/^cbc/冂コ冂/
+    - xform/^cbd/冂コ・/
+    - xform/^cbe/冂コ乙/
+    - xform/^cbf/冂コ口/
+    - xform/^cbg/冂コ一/
+    - xform/^cbh/冂コ丨/
+    - xform/^cbi/冂コ／/
+    - xform/^cbj/冂コ/
+    - xform/^cca/冂山十/
+    - xform/^ccb/冂山✕/
+    - xform/^ccc/冂山冂/
+    - xform/^ccd/冂山・/
+    - xform/^cce/冂山乙/
+    - xform/^ccf/冂山口/
+    - xform/^ccg/冂山一/
+    - xform/^cch/冂山丨/
+    - xform/^cci/冂山／/
+    - xform/^ccj/冂山/
+    - xform/^cda/冂几十/
+    - xform/^cdb/冂几✕/
+    - xform/^cdc/冂几冂/
+    - xform/^cdd/冂几・/
+    - xform/^cde/冂几乙/
+    - xform/^cdf/冂几口/
+    - xform/^cdg/冂几一/
+    - xform/^cdh/冂几丨/
+    - xform/^cdi/冂几／/
+    - xform/^cdj/冂几/
+    - xform/^cea/冂门十/
+    - xform/^ceb/冂门✕/
+    - xform/^cec/冂门冂/
+    - xform/^ced/冂门・/
+    - xform/^cee/冂门乙/
+    - xform/^cef/冂门口/
+    - xform/^ceg/冂门一/
+    - xform/^ceh/冂门丨/
+    - xform/^cei/冂门／/
+    - xform/^cej/冂门/
+    - xform/^cfa/冂馬十/
+    - xform/^cfb/冂馬✕/
+    - xform/^cfc/冂馬冂/
+    - xform/^cfd/冂馬・/
+    - xform/^cfe/冂馬乙/
+    - xform/^cff/冂馬口/
+    - xform/^cfg/冂馬一/
+    - xform/^cfh/冂馬丨/
+    - xform/^cfi/冂馬／/
+    - xform/^cfj/冂馬/
+    - xform/^cga/冂冖十/
+    - xform/^cgb/冂冖✕/
+    - xform/^cgc/冂冖冂/
+    - xform/^cgd/冂冖・/
+    - xform/^cge/冂冖乙/
+    - xform/^cgf/冂冖口/
+    - xform/^cgg/冂冖一/
+    - xform/^cgh/冂冖丨/
+    - xform/^cgi/冂冖／/
+    - xform/^cgj/冂冖/
+    - xform/^cha/冂冂十/
+    - xform/^chb/冂冂✕/
+    - xform/^chc/冂冂冂/
+    - xform/^chd/冂冂・/
+    - xform/^che/冂冂乙/
+    - xform/^chf/冂冂口/
+    - xform/^chg/冂冂一/
+    - xform/^chh/冂冂丨/
+    - xform/^chi/冂冂／/
+    - xform/^chj/冂冂/
+    - xform/^cia/冂月十/
+    - xform/^cib/冂月✕/
+    - xform/^cic/冂月冂/
+    - xform/^cid/冂月・/
+    - xform/^cie/冂月乙/
+    - xform/^cif/冂月口/
+    - xform/^cig/冂月一/
+    - xform/^cih/冂月丨/
+    - xform/^cii/冂月／/
+    - xform/^cij/冂月/
+    - xform/^daa/・立十/
+    - xform/^dab/・立✕/
+    - xform/^dac/・立冂/
+    - xform/^dad/・立・/
+    - xform/^dae/・立乙/
+    - xform/^daf/・立口/
+    - xform/^dag/・立一/
+    - xform/^dah/・立丨/
+    - xform/^dai/・立／/
+    - xform/^daj/・立/
+    - xform/^dba/・礻十/
+    - xform/^dbb/・礻✕/
+    - xform/^dbc/・礻冂/
+    - xform/^dbd/・礻・/
+    - xform/^dbe/・礻乙/
+    - xform/^dbf/・礻口/
+    - xform/^dbg/・礻一/
+    - xform/^dbh/・礻丨/
+    - xform/^dbi/・礻／/
+    - xform/^dbj/・礻/
+    - xform/^dca/・疒十/
+    - xform/^dcb/・疒✕/
+    - xform/^dcc/・疒冂/
+    - xform/^dcd/・疒・/
+    - xform/^dce/・疒乙/
+    - xform/^dcf/・疒口/
+    - xform/^dcg/・疒一/
+    - xform/^dch/・疒丨/
+    - xform/^dci/・疒／/
+    - xform/^dcj/・疒/
+    - xform/^dda/・亠十/
+    - xform/^ddb/・亠✕/
+    - xform/^ddc/・亠冂/
+    - xform/^ddd/・亠・/
+    - xform/^dde/・亠乙/
+    - xform/^ddf/・亠口/
+    - xform/^ddg/・亠一/
+    - xform/^ddh/・亠丨/
+    - xform/^ddi/・亠／/
+    - xform/^ddj/・亠/
+    - xform/^dea/・宀十/
+    - xform/^deb/・宀✕/
+    - xform/^dec/・宀冂/
+    - xform/^ded/・宀・/
+    - xform/^dee/・宀乙/
+    - xform/^def/・宀口/
+    - xform/^deg/・宀一/
+    - xform/^deh/・宀丨/
+    - xform/^dei/・宀／/
+    - xform/^dej/・宀/
+    - xform/^dfa/・广十/
+    - xform/^dfb/・广✕/
+    - xform/^dfc/・广冂/
+    - xform/^dfd/・广・/
+    - xform/^dfe/・广乙/
+    - xform/^dff/・广口/
+    - xform/^dfg/・广一/
+    - xform/^dfh/・广丨/
+    - xform/^dfi/・广／/
+    - xform/^dfj/・广/
+    - xform/^dga/・丶十/
+    - xform/^dgb/・丶✕/
+    - xform/^dgc/・丶冂/
+    - xform/^dgd/・丶・/
+    - xform/^dge/・丶乙/
+    - xform/^dgf/・丶口/
+    - xform/^dgg/・丶一/
+    - xform/^dgh/・丶丨/
+    - xform/^dgi/・丶／/
+    - xform/^dgj/・丶/
+    - xform/^dha/・丷十/
+    - xform/^dhb/・丷✕/
+    - xform/^dhc/・丷冂/
+    - xform/^dhd/・丷・/
+    - xform/^dhe/・丷乙/
+    - xform/^dhf/・丷口/
+    - xform/^dhg/・丷一/
+    - xform/^dhh/・丷丨/
+    - xform/^dhi/・丷／/
+    - xform/^dhj/・丷/
+    - xform/^dia/・シ十/
+    - xform/^dib/・シ✕/
+    - xform/^dic/・シ冂/
+    - xform/^did/・シ・/
+    - xform/^die/・シ乙/
+    - xform/^dif/・シ口/
+    - xform/^dig/・シ一/
+    - xform/^dih/・シ丨/
+    - xform/^dii/・シ／/
+    - xform/^dij/・シ/
+    - xform/^eaa/乙ட十/
+    - xform/^eab/乙ட✕/
+    - xform/^eac/乙ட冂/
+    - xform/^ead/乙ட・/
+    - xform/^eae/乙ட乙/
+    - xform/^eaf/乙ட口/
+    - xform/^eag/乙ட一/
+    - xform/^eah/乙ட丨/
+    - xform/^eai/乙ட／/
+    - xform/^eaj/乙ட/
+    - xform/^eba/乙弓十/
+    - xform/^ebb/乙弓✕/
+    - xform/^ebc/乙弓冂/
+    - xform/^ebd/乙弓・/
+    - xform/^ebe/乙弓乙/
+    - xform/^ebf/乙弓口/
+    - xform/^ebg/乙弓一/
+    - xform/^ebh/乙弓丨/
+    - xform/^ebi/乙弓／/
+    - xform/^ebj/乙弓/
+    - xform/^eca/乙幺十/
+    - xform/^ecb/乙幺✕/
+    - xform/^ecc/乙幺冂/
+    - xform/^ecd/乙幺・/
+    - xform/^ece/乙幺乙/
+    - xform/^ecf/乙幺口/
+    - xform/^ecg/乙幺一/
+    - xform/^ech/乙幺丨/
+    - xform/^eci/乙幺／/
+    - xform/^ecj/乙幺/
+    - xform/^eda/乙阝十/
+    - xform/^edb/乙阝✕/
+    - xform/^edc/乙阝冂/
+    - xform/^edd/乙阝・/
+    - xform/^ede/乙阝乙/
+    - xform/^edf/乙阝口/
+    - xform/^edg/乙阝一/
+    - xform/^edh/乙阝丨/
+    - xform/^edi/乙阝／/
+    - xform/^edj/乙阝/
+    - xform/^eea/乙刁十/
+    - xform/^eeb/乙刁✕/
+    - xform/^eec/乙刁冂/
+    - xform/^eed/乙刁・/
+    - xform/^eee/乙刁乙/
+    - xform/^eef/乙刁口/
+    - xform/^eeg/乙刁一/
+    - xform/^eeh/乙刁丨/
+    - xform/^eei/乙刁／/
+    - xform/^eej/乙刁/
+    - xform/^efa/乙乙十/
+    - xform/^efb/乙乙✕/
+    - xform/^efc/乙乙冂/
+    - xform/^efd/乙乙・/
+    - xform/^efe/乙乙乙/
+    - xform/^eff/乙乙口/
+    - xform/^efg/乙乙一/
+    - xform/^efh/乙乙丨/
+    - xform/^efi/乙乙／/
+    - xform/^efj/乙乙/
+    - xform/^ega/乙乛十/
+    - xform/^egb/乙乛✕/
+    - xform/^egc/乙乛冂/
+    - xform/^egd/乙乛・/
+    - xform/^ege/乙乛乙/
+    - xform/^egf/乙乛口/
+    - xform/^egg/乙乛一/
+    - xform/^egh/乙乛丨/
+    - xform/^egi/乙乛／/
+    - xform/^egj/乙乛/
+    - xform/^eha/乙厶十/
+    - xform/^ehb/乙厶✕/
+    - xform/^ehc/乙厶冂/
+    - xform/^ehd/乙厶・/
+    - xform/^ehe/乙厶乙/
+    - xform/^ehf/乙厶口/
+    - xform/^ehg/乙厶一/
+    - xform/^ehh/乙厶丨/
+    - xform/^ehi/乙厶／/
+    - xform/^ehj/乙厶/
+    - xform/^eia/乙马十/
+    - xform/^eib/乙马✕/
+    - xform/^eic/乙马冂/
+    - xform/^eid/乙马・/
+    - xform/^eie/乙马乙/
+    - xform/^eif/乙马口/
+    - xform/^eig/乙马一/
+    - xform/^eih/乙马丨/
+    - xform/^eii/乙马／/
+    - xform/^eij/乙马/
+    - xform/^faa/口目十/
+    - xform/^fab/口目✕/
+    - xform/^fac/口目冂/
+    - xform/^fad/口目・/
+    - xform/^fae/口目乙/
+    - xform/^faf/口目口/
+    - xform/^fag/口目一/
+    - xform/^fah/口目丨/
+    - xform/^fai/口目／/
+    - xform/^faj/口目/
+    - xform/^fba/口足十/
+    - xform/^fbb/口足✕/
+    - xform/^fbc/口足冂/
+    - xform/^fbd/口足・/
+    - xform/^fbe/口足乙/
+    - xform/^fbf/口足口/
+    - xform/^fbg/口足一/
+    - xform/^fbh/口足丨/
+    - xform/^fbi/口足／/
+    - xform/^fbj/口足/
+    - xform/^fca/口田十/
+    - xform/^fcb/口田✕/
+    - xform/^fcc/口田冂/
+    - xform/^fcd/口田・/
+    - xform/^fce/口田乙/
+    - xform/^fcf/口田口/
+    - xform/^fcg/口田一/
+    - xform/^fch/口田丨/
+    - xform/^fci/口田／/
+    - xform/^fcj/口田/
+    - xform/^fda/口四十/
+    - xform/^fdb/口四✕/
+    - xform/^fdc/口四冂/
+    - xform/^fdd/口四・/
+    - xform/^fde/口四乙/
+    - xform/^fdf/口四口/
+    - xform/^fdg/口四一/
+    - xform/^fdh/口四丨/
+    - xform/^fdi/口四／/
+    - xform/^fdj/口四/
+    - xform/^fea/口因十/
+    - xform/^feb/口因✕/
+    - xform/^fec/口因冂/
+    - xform/^fed/口因・/
+    - xform/^fee/口因乙/
+    - xform/^fef/口因口/
+    - xform/^feg/口因一/
+    - xform/^feh/口因丨/
+    - xform/^fei/口因／/
+    - xform/^fej/口因/
+    - xform/^ffa/口臼十/
+    - xform/^ffb/口臼✕/
+    - xform/^ffc/口臼冂/
+    - xform/^ffd/口臼・/
+    - xform/^ffe/口臼乙/
+    - xform/^fff/口臼口/
+    - xform/^ffg/口臼一/
+    - xform/^ffh/口臼丨/
+    - xform/^ffi/口臼／/
+    - xform/^ffj/口臼/
+    - xform/^fga/口口十/
+    - xform/^fgb/口口✕/
+    - xform/^fgc/口口冂/
+    - xform/^fgd/口口・/
+    - xform/^fge/口口乙/
+    - xform/^fgf/口口口/
+    - xform/^fgg/口口一/
+    - xform/^fgh/口口丨/
+    - xform/^fgi/口口／/
+    - xform/^fgj/口口/
+    - xform/^fha/口尸十/
+    - xform/^fhb/口尸✕/
+    - xform/^fhc/口尸冂/
+    - xform/^fhd/口尸・/
+    - xform/^fhe/口尸乙/
+    - xform/^fhf/口尸口/
+    - xform/^fhg/口尸一/
+    - xform/^fhh/口尸丨/
+    - xform/^fhi/口尸／/
+    - xform/^fhj/口尸/
+    - xform/^fia/口日十/
+    - xform/^fib/口日✕/
+    - xform/^fic/口日冂/
+    - xform/^fid/口日・/
+    - xform/^fie/口日乙/
+    - xform/^fif/口日口/
+    - xform/^fig/口日一/
+    - xform/^fih/口日丨/
+    - xform/^fii/口日／/
+    - xform/^fij/口日/
+    - xform/^gaa/一ፖ十/
+    - xform/^gab/一ፖ✕/
+    - xform/^gac/一ፖ冂/
+    - xform/^gad/一ፖ・/
+    - xform/^gae/一ፖ乙/
+    - xform/^gaf/一ፖ口/
+    - xform/^gag/一ፖ一/
+    - xform/^gah/一ፖ丨/
+    - xform/^gai/一ፖ／/
+    - xform/^gaj/一ፖ/
+    - xform/^gba/一耳十/
+    - xform/^gbb/一耳✕/
+    - xform/^gbc/一耳冂/
+    - xform/^gbd/一耳・/
+    - xform/^gbe/一耳乙/
+    - xform/^gbf/一耳口/
+    - xform/^gbg/一耳一/
+    - xform/^gbh/一耳丨/
+    - xform/^gbi/一耳／/
+    - xform/^gbj/一耳/
+    - xform/^gca/一镸十/
+    - xform/^gcb/一镸✕/
+    - xform/^gcc/一镸冂/
+    - xform/^gcd/一镸・/
+    - xform/^gce/一镸乙/
+    - xform/^gcf/一镸口/
+    - xform/^gcg/一镸一/
+    - xform/^gch/一镸丨/
+    - xform/^gci/一镸／/
+    - xform/^gcj/一镸/
+    - xform/^gda/一厂十/
+    - xform/^gdb/一厂✕/
+    - xform/^gdc/一厂冂/
+    - xform/^gdd/一厂・/
+    - xform/^gde/一厂乙/
+    - xform/^gdf/一厂口/
+    - xform/^gdg/一厂一/
+    - xform/^gdh/一厂丨/
+    - xform/^gdi/一厂／/
+    - xform/^gdj/一厂/
+    - xform/^gea/一雨十/
+    - xform/^geb/一雨✕/
+    - xform/^gec/一雨冂/
+    - xform/^ged/一雨・/
+    - xform/^gee/一雨乙/
+    - xform/^gef/一雨口/
+    - xform/^geg/一雨一/
+    - xform/^geh/一雨丨/
+    - xform/^gei/一雨／/
+    - xform/^gej/一雨/
+    - xform/^gfa/一西十/
+    - xform/^gfb/一西✕/
+    - xform/^gfc/一西冂/
+    - xform/^gfd/一西・/
+    - xform/^gfe/一西乙/
+    - xform/^gff/一西口/
+    - xform/^gfg/一西一/
+    - xform/^gfh/一西丨/
+    - xform/^gfi/一西／/
+    - xform/^gfj/一西/
+    - xform/^gga/一一十/
+    - xform/^ggb/一一✕/
+    - xform/^ggc/一一冂/
+    - xform/^ggd/一一・/
+    - xform/^gge/一一乙/
+    - xform/^ggf/一一口/
+    - xform/^ggg/一一一/
+    - xform/^ggh/一一丨/
+    - xform/^ggi/一一／/
+    - xform/^ggj/一一/
+    - xform/^gha/一工十/
+    - xform/^ghb/一工✕/
+    - xform/^ghc/一工冂/
+    - xform/^ghd/一工・/
+    - xform/^ghe/一工乙/
+    - xform/^ghf/一工口/
+    - xform/^ghg/一工一/
+    - xform/^ghh/一工丨/
+    - xform/^ghi/一工／/
+    - xform/^ghj/一工/
+    - xform/^gia/一王十/
+    - xform/^gib/一王✕/
+    - xform/^gic/一王冂/
+    - xform/^gid/一王・/
+    - xform/^gie/一王乙/
+    - xform/^gif/一王口/
+    - xform/^gig/一王一/
+    - xform/^gih/一王丨/
+    - xform/^gii/一王／/
+    - xform/^gij/一王/
+    - xform/^haa/丨中十/
+    - xform/^hab/丨中✕/
+    - xform/^hac/丨中冂/
+    - xform/^had/丨中・/
+    - xform/^hae/丨中乙/
+    - xform/^haf/丨中口/
+    - xform/^hag/丨中一/
+    - xform/^hah/丨中丨/
+    - xform/^hai/丨中／/
+    - xform/^haj/丨中/
+    - xform/^hba/丨聿十/
+    - xform/^hbb/丨聿✕/
+    - xform/^hbc/丨聿冂/
+    - xform/^hbd/丨聿・/
+    - xform/^hbe/丨聿乙/
+    - xform/^hbf/丨聿口/
+    - xform/^hbg/丨聿一/
+    - xform/^hbh/丨聿丨/
+    - xform/^hbi/丨聿／/
+    - xform/^hbj/丨聿/
+    - xform/^hca/丨由十/
+    - xform/^hcb/丨由✕/
+    - xform/^hcc/丨由冂/
+    - xform/^hcd/丨由・/
+    - xform/^hce/丨由乙/
+    - xform/^hcf/丨由口/
+    - xform/^hcg/丨由一/
+    - xform/^hch/丨由丨/
+    - xform/^hci/丨由／/
+    - xform/^hcj/丨由/
+    - xform/^hda/丨小十/
+    - xform/^hdb/丨小✕/
+    - xform/^hdc/丨小冂/
+    - xform/^hdd/丨小・/
+    - xform/^hde/丨小乙/
+    - xform/^hdf/丨小口/
+    - xform/^hdg/丨小一/
+    - xform/^hdh/丨小丨/
+    - xform/^hdi/丨小／/
+    - xform/^hdj/丨小/
+    - xform/^hea/丨业十/
+    - xform/^heb/丨业✕/
+    - xform/^hec/丨业冂/
+    - xform/^hed/丨业・/
+    - xform/^hee/丨业乙/
+    - xform/^hef/丨业口/
+    - xform/^heg/丨业一/
+    - xform/^heh/丨业丨/
+    - xform/^hei/丨业／/
+    - xform/^hej/丨业/
+    - xform/^hfa/丨巾十/
+    - xform/^hfb/丨巾✕/
+    - xform/^hfc/丨巾冂/
+    - xform/^hfd/丨巾・/
+    - xform/^hfe/丨巾乙/
+    - xform/^hff/丨巾口/
+    - xform/^hfg/丨巾一/
+    - xform/^hfh/丨巾丨/
+    - xform/^hfi/丨巾／/
+    - xform/^hfj/丨巾/
+    - xform/^hga/丨丨十/
+    - xform/^hgb/丨丨✕/
+    - xform/^hgc/丨丨冂/
+    - xform/^hgd/丨丨・/
+    - xform/^hge/丨丨乙/
+    - xform/^hgf/丨丨口/
+    - xform/^hgg/丨丨一/
+    - xform/^hgh/丨丨丨/
+    - xform/^hgi/丨丨／/
+    - xform/^hgj/丨丨/
+    - xform/^hha/丨卜十/
+    - xform/^hhb/丨卜✕/
+    - xform/^hhc/丨卜冂/
+    - xform/^hhd/丨卜・/
+    - xform/^hhe/丨卜乙/
+    - xform/^hhf/丨卜口/
+    - xform/^hhg/丨卜一/
+    - xform/^hhh/丨卜丨/
+    - xform/^hhi/丨卜／/
+    - xform/^hhj/丨卜/
+    - xform/^hia/丨忄十/
+    - xform/^hib/丨忄✕/
+    - xform/^hic/丨忄冂/
+    - xform/^hid/丨忄・/
+    - xform/^hie/丨忄乙/
+    - xform/^hif/丨忄口/
+    - xform/^hig/丨忄一/
+    - xform/^hih/丨忄丨/
+    - xform/^hii/丨忄／/
+    - xform/^hij/丨忄/
+    - xform/^iaa/／ㇰ十/
+    - xform/^iab/／ㇰ✕/
+    - xform/^iac/／ㇰ冂/
+    - xform/^iad/／ㇰ・/
+    - xform/^iae/／ㇰ乙/
+    - xform/^iaf/／ㇰ口/
+    - xform/^iag/／ㇰ一/
+    - xform/^iah/／ㇰ丨/
+    - xform/^iai/／ㇰ／/
+    - xform/^iaj/／ㇰ/
+    - xform/^iba/／勹十/
+    - xform/^ibb/／勹✕/
+    - xform/^ibc/／勹冂/
+    - xform/^ibd/／勹・/
+    - xform/^ibe/／勹乙/
+    - xform/^ibf/／勹口/
+    - xform/^ibg/／勹一/
+    - xform/^ibh/／勹丨/
+    - xform/^ibi/／勹／/
+    - xform/^ibj/／勹/
+    - xform/^ica/／白十/
+    - xform/^icb/／白✕/
+    - xform/^icc/／白冂/
+    - xform/^icd/／白・/
+    - xform/^ice/／白乙/
+    - xform/^icf/／白口/
+    - xform/^icg/／白一/
+    - xform/^ich/／白丨/
+    - xform/^ici/／白／/
+    - xform/^icj/／白/
+    - xform/^ida/／⥒十/
+    - xform/^idb/／⥒✕/
+    - xform/^idc/／⥒冂/
+    - xform/^idd/／⥒・/
+    - xform/^ide/／⥒乙/
+    - xform/^idf/／⥒口/
+    - xform/^idg/／⥒一/
+    - xform/^idh/／⥒丨/
+    - xform/^idi/／⥒／/
+    - xform/^idj/／⥒/
+    - xform/^iea/／千十/
+    - xform/^ieb/／千✕/
+    - xform/^iec/／千冂/
+    - xform/^ied/／千・/
+    - xform/^iee/／千乙/
+    - xform/^ief/／千口/
+    - xform/^ieg/／千一/
+    - xform/^ieh/／千丨/
+    - xform/^iei/／千／/
+    - xform/^iej/／千/
+    - xform/^ifa/／𥫗十/
+    - xform/^ifb/／𥫗✕/
+    - xform/^ifc/／𥫗冂/
+    - xform/^ifd/／𥫗・/
+    - xform/^ife/／𥫗乙/
+    - xform/^iff/／𥫗口/
+    - xform/^ifg/／𥫗一/
+    - xform/^ifh/／𥫗丨/
+    - xform/^ifi/／𥫗／/
+    - xform/^ifj/／𥫗/
+    - xform/^iga/／ノ十/
+    - xform/^igb/／ノ✕/
+    - xform/^igc/／ノ冂/
+    - xform/^igd/／ノ・/
+    - xform/^ige/／ノ乙/
+    - xform/^igf/／ノ口/
+    - xform/^igg/／ノ一/
+    - xform/^igh/／ノ丨/
+    - xform/^igi/／ノ／/
+    - xform/^igj/／ノ/
+    - xform/^iha/／亻十/
+    - xform/^ihb/／亻✕/
+    - xform/^ihc/／亻冂/
+    - xform/^ihd/／亻・/
+    - xform/^ihe/／亻乙/
+    - xform/^ihf/／亻口/
+    - xform/^ihg/／亻一/
+    - xform/^ihh/／亻丨/
+    - xform/^ihi/／亻／/
+    - xform/^ihj/／亻/
+    - xform/^iia/／个十/
+    - xform/^iib/／个✕/
+    - xform/^iic/／个冂/
+    - xform/^iid/／个・/
+    - xform/^iie/／个乙/
+    - xform/^iif/／个口/
+    - xform/^iig/／个一/
+    - xform/^iih/／个丨/
+    - xform/^iii/／个／/
+    - xform/^iij/／个/
+    - xform/^aj/十◉姓/
+    - xform/^bj/✕◉姓/
+    - xform/^cj/冂◉姓/
+    - xform/^dj/・◉姓/
+    - xform/^ej/乙◉姓/
+    - xform/^fj/口◉姓/
+    - xform/^gj/一◉姓/
+    - xform/^hj/丨◉姓/
+    - xform/^ij/／◉姓/
+    - xform/^aj/十◉姓/
+    - xform/^aa/十艹    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^ab/十廿    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^ac/十車    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^ad/十丰    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^ae/十木    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^af/十耂    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^ag/十十    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^ah/十扌    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^ai/十土    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^ba/✕𡗗    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^bb/✕戈    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^bc/✕七    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^bd/✕力    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^be/✕女    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^bf/✕大    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^bg/✕ナ    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^bh/✕又    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^bi/✕犭    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^ca/冂匚    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^cb/冂コ    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^cc/冂山    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^cd/冂几    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^ce/冂门    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^cf/冂馬    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^cg/冂冖    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^ch/冂冂    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^ci/冂月    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^da/・立    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^db/・礻    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^dc/・疒    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^dd/・亠    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^de/・宀    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^df/・广    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^dg/・丶    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^dh/・丷    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^di/・シ    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^ea/乙ட    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^eb/乙弓    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^ec/乙幺    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^ed/乙阝    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^ee/乙刁    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^ef/乙乙    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^eg/乙乛    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^eh/乙厶    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^ei/乙马    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^fa/口目    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^fb/口足    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^fc/口田    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^fd/口四    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^fe/口因    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^ff/口臼    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^fg/口口    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^fh/口尸    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^fi/口日    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^ga/一ፖ    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^gb/一耳    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^gc/一镸    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^gd/一厂    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^ge/一雨    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^gf/一西    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^gg/一一    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^gh/一工    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^gi/一王    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^ha/丨中    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^hb/丨聿    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^hc/丨由    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^hd/丨小    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^he/丨业    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^hf/丨巾    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^hg/丨丨    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^hh/丨卜    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^hi/丨忄    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^ia/／ㇰ    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^ib/／勹    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^ic/／白    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^id/／⥒    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^ie/／千    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^if/／𥫗    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^ig/／ノ    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^ih/／亻    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^ii/／个    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^a/十    🠉(十扌土)🠊(丰木耂)🠋(艹廿車)◉姓/
+    - xform/^b/✕    🠉(ナ又犭)🠊(力女大)🠋(𡗗戈七)◉姓/
+    - xform/^c/冂    🠉(冖冂月)🠊(几门馬)🠋(匚コ山)◉姓/
+    - xform/^d/・    🠉(丶丷シ)🠊(亠宀广)🠋(立礻疒)◉姓/
+    - xform/^e/乙    🠉(乛厶马)🠊(阝刁乙)🠋(ட弓幺)◉姓/
+    - xform/^f/口    🠉(口尸日)🠊(四因臼)🠋(目足田)◉姓/
+    - xform/^g/一    🠉(一工王)🠊(厂雨西)🠋(ፖ耳镸)◉姓/
+    - xform/^h/丨    🠉(丨卜忄)🠊(小业巾)🠋(中聿由)◉姓/
+    - xform/^i/／    🠉(ノ亻个)🠊(⥒千𥫗)🠋(ㇰ勹白)◉姓/
+    - xform/^jaaa/十艹十/
+    - xform/^jaab/十艹✕/
+    - xform/^jaac/十艹冂/
+    - xform/^jaad/十艹・/
+    - xform/^jaae/十艹乙/
+    - xform/^jaaf/十艹口/
+    - xform/^jaag/十艹一/
+    - xform/^jaah/十艹丨/
+    - xform/^jaai/十艹／/
+    - xform/^jaaj/十艹/
+    - xform/^jaba/十廿十/
+    - xform/^jabb/十廿✕/
+    - xform/^jabc/十廿冂/
+    - xform/^jabd/十廿・/
+    - xform/^jabe/十廿乙/
+    - xform/^jabf/十廿口/
+    - xform/^jabg/十廿一/
+    - xform/^jabh/十廿丨/
+    - xform/^jabi/十廿／/
+    - xform/^jabj/十廿/
+    - xform/^jaca/十車十/
+    - xform/^jacb/十車✕/
+    - xform/^jacc/十車冂/
+    - xform/^jacd/十車・/
+    - xform/^jace/十車乙/
+    - xform/^jacf/十車口/
+    - xform/^jacg/十車一/
+    - xform/^jach/十車丨/
+    - xform/^jaci/十車／/
+    - xform/^jacj/十車/
+    - xform/^jada/十丰十/
+    - xform/^jadb/十丰✕/
+    - xform/^jadc/十丰冂/
+    - xform/^jadd/十丰・/
+    - xform/^jade/十丰乙/
+    - xform/^jadf/十丰口/
+    - xform/^jadg/十丰一/
+    - xform/^jadh/十丰丨/
+    - xform/^jadi/十丰／/
+    - xform/^jadj/十丰/
+    - xform/^jaea/十木十/
+    - xform/^jaeb/十木✕/
+    - xform/^jaec/十木冂/
+    - xform/^jaed/十木・/
+    - xform/^jaee/十木乙/
+    - xform/^jaef/十木口/
+    - xform/^jaeg/十木一/
+    - xform/^jaeh/十木丨/
+    - xform/^jaei/十木／/
+    - xform/^jaej/十木/
+    - xform/^jafa/十耂十/
+    - xform/^jafb/十耂✕/
+    - xform/^jafc/十耂冂/
+    - xform/^jafd/十耂・/
+    - xform/^jafe/十耂乙/
+    - xform/^jaff/十耂口/
+    - xform/^jafg/十耂一/
+    - xform/^jafh/十耂丨/
+    - xform/^jafi/十耂／/
+    - xform/^jafj/十耂/
+    - xform/^jaga/十十十/
+    - xform/^jagb/十十✕/
+    - xform/^jagc/十十冂/
+    - xform/^jagd/十十・/
+    - xform/^jage/十十乙/
+    - xform/^jagf/十十口/
+    - xform/^jagg/十十一/
+    - xform/^jagh/十十丨/
+    - xform/^jagi/十十／/
+    - xform/^jagj/十十/
+    - xform/^jaha/十扌十/
+    - xform/^jahb/十扌✕/
+    - xform/^jahc/十扌冂/
+    - xform/^jahd/十扌・/
+    - xform/^jahe/十扌乙/
+    - xform/^jahf/十扌口/
+    - xform/^jahg/十扌一/
+    - xform/^jahh/十扌丨/
+    - xform/^jahi/十扌／/
+    - xform/^jahj/十扌/
+    - xform/^jaia/十土十/
+    - xform/^jaib/十土✕/
+    - xform/^jaic/十土冂/
+    - xform/^jaid/十土・/
+    - xform/^jaie/十土乙/
+    - xform/^jaif/十土口/
+    - xform/^jaig/十土一/
+    - xform/^jaih/十土丨/
+    - xform/^jaii/十土／/
+    - xform/^jaij/十土/
+    - xform/^jbaa/✕𡗗十/
+    - xform/^jbab/✕𡗗✕/
+    - xform/^jbac/✕𡗗冂/
+    - xform/^jbad/✕𡗗・/
+    - xform/^jbae/✕𡗗乙/
+    - xform/^jbaf/✕𡗗口/
+    - xform/^jbag/✕𡗗一/
+    - xform/^jbah/✕𡗗丨/
+    - xform/^jbai/✕𡗗／/
+    - xform/^jbaj/✕𡗗/
+    - xform/^jbba/✕戈十/
+    - xform/^jbbb/✕戈✕/
+    - xform/^jbbc/✕戈冂/
+    - xform/^jbbd/✕戈・/
+    - xform/^jbbe/✕戈乙/
+    - xform/^jbbf/✕戈口/
+    - xform/^jbbg/✕戈一/
+    - xform/^jbbh/✕戈丨/
+    - xform/^jbbi/✕戈／/
+    - xform/^jbbj/✕戈/
+    - xform/^jbca/✕七十/
+    - xform/^jbcb/✕七✕/
+    - xform/^jbcc/✕七冂/
+    - xform/^jbcd/✕七・/
+    - xform/^jbce/✕七乙/
+    - xform/^jbcf/✕七口/
+    - xform/^jbcg/✕七一/
+    - xform/^jbch/✕七丨/
+    - xform/^jbci/✕七／/
+    - xform/^jbcj/✕七/
+    - xform/^jbda/✕力十/
+    - xform/^jbdb/✕力✕/
+    - xform/^jbdc/✕力冂/
+    - xform/^jbdd/✕力・/
+    - xform/^jbde/✕力乙/
+    - xform/^jbdf/✕力口/
+    - xform/^jbdg/✕力一/
+    - xform/^jbdh/✕力丨/
+    - xform/^jbdi/✕力／/
+    - xform/^jbdj/✕力/
+    - xform/^jbea/✕女十/
+    - xform/^jbeb/✕女✕/
+    - xform/^jbec/✕女冂/
+    - xform/^jbed/✕女・/
+    - xform/^jbee/✕女乙/
+    - xform/^jbef/✕女口/
+    - xform/^jbeg/✕女一/
+    - xform/^jbeh/✕女丨/
+    - xform/^jbei/✕女／/
+    - xform/^jbej/✕女/
+    - xform/^jbfa/✕大十/
+    - xform/^jbfb/✕大✕/
+    - xform/^jbfc/✕大冂/
+    - xform/^jbfd/✕大・/
+    - xform/^jbfe/✕大乙/
+    - xform/^jbff/✕大口/
+    - xform/^jbfg/✕大一/
+    - xform/^jbfh/✕大丨/
+    - xform/^jbfi/✕大／/
+    - xform/^jbfj/✕大/
+    - xform/^jbga/✕ナ十/
+    - xform/^jbgb/✕ナ✕/
+    - xform/^jbgc/✕ナ冂/
+    - xform/^jbgd/✕ナ・/
+    - xform/^jbge/✕ナ乙/
+    - xform/^jbgf/✕ナ口/
+    - xform/^jbgg/✕ナ一/
+    - xform/^jbgh/✕ナ丨/
+    - xform/^jbgi/✕ナ／/
+    - xform/^jbgj/✕ナ/
+    - xform/^jbha/✕又十/
+    - xform/^jbhb/✕又✕/
+    - xform/^jbhc/✕又冂/
+    - xform/^jbhd/✕又・/
+    - xform/^jbhe/✕又乙/
+    - xform/^jbhf/✕又口/
+    - xform/^jbhg/✕又一/
+    - xform/^jbhh/✕又丨/
+    - xform/^jbhi/✕又／/
+    - xform/^jbhj/✕又/
+    - xform/^jbia/✕犭十/
+    - xform/^jbib/✕犭✕/
+    - xform/^jbic/✕犭冂/
+    - xform/^jbid/✕犭・/
+    - xform/^jbie/✕犭乙/
+    - xform/^jbif/✕犭口/
+    - xform/^jbig/✕犭一/
+    - xform/^jbih/✕犭丨/
+    - xform/^jbii/✕犭／/
+    - xform/^jbij/✕犭/
+    - xform/^jcaa/冂匚十/
+    - xform/^jcab/冂匚✕/
+    - xform/^jcac/冂匚冂/
+    - xform/^jcad/冂匚・/
+    - xform/^jcae/冂匚乙/
+    - xform/^jcaf/冂匚口/
+    - xform/^jcag/冂匚一/
+    - xform/^jcah/冂匚丨/
+    - xform/^jcai/冂匚／/
+    - xform/^jcaj/冂匚/
+    - xform/^jcba/冂コ十/
+    - xform/^jcbb/冂コ✕/
+    - xform/^jcbc/冂コ冂/
+    - xform/^jcbd/冂コ・/
+    - xform/^jcbe/冂コ乙/
+    - xform/^jcbf/冂コ口/
+    - xform/^jcbg/冂コ一/
+    - xform/^jcbh/冂コ丨/
+    - xform/^jcbi/冂コ／/
+    - xform/^jcbj/冂コ/
+    - xform/^jcca/冂山十/
+    - xform/^jccb/冂山✕/
+    - xform/^jccc/冂山冂/
+    - xform/^jccd/冂山・/
+    - xform/^jcce/冂山乙/
+    - xform/^jccf/冂山口/
+    - xform/^jccg/冂山一/
+    - xform/^jcch/冂山丨/
+    - xform/^jcci/冂山／/
+    - xform/^jccj/冂山/
+    - xform/^jcda/冂几十/
+    - xform/^jcdb/冂几✕/
+    - xform/^jcdc/冂几冂/
+    - xform/^jcdd/冂几・/
+    - xform/^jcde/冂几乙/
+    - xform/^jcdf/冂几口/
+    - xform/^jcdg/冂几一/
+    - xform/^jcdh/冂几丨/
+    - xform/^jcdi/冂几／/
+    - xform/^jcdj/冂几/
+    - xform/^jcea/冂门十/
+    - xform/^jceb/冂门✕/
+    - xform/^jcec/冂门冂/
+    - xform/^jced/冂门・/
+    - xform/^jcee/冂门乙/
+    - xform/^jcef/冂门口/
+    - xform/^jceg/冂门一/
+    - xform/^jceh/冂门丨/
+    - xform/^jcei/冂门／/
+    - xform/^jcej/冂门/
+    - xform/^jcfa/冂馬十/
+    - xform/^jcfb/冂馬✕/
+    - xform/^jcfc/冂馬冂/
+    - xform/^jcfd/冂馬・/
+    - xform/^jcfe/冂馬乙/
+    - xform/^jcff/冂馬口/
+    - xform/^jcfg/冂馬一/
+    - xform/^jcfh/冂馬丨/
+    - xform/^jcfi/冂馬／/
+    - xform/^jcfj/冂馬/
+    - xform/^jcga/冂冖十/
+    - xform/^jcgb/冂冖✕/
+    - xform/^jcgc/冂冖冂/
+    - xform/^jcgd/冂冖・/
+    - xform/^jcge/冂冖乙/
+    - xform/^jcgf/冂冖口/
+    - xform/^jcgg/冂冖一/
+    - xform/^jcgh/冂冖丨/
+    - xform/^jcgi/冂冖／/
+    - xform/^jcgj/冂冖/
+    - xform/^jcha/冂冂十/
+    - xform/^jchb/冂冂✕/
+    - xform/^jchc/冂冂冂/
+    - xform/^jchd/冂冂・/
+    - xform/^jche/冂冂乙/
+    - xform/^jchf/冂冂口/
+    - xform/^jchg/冂冂一/
+    - xform/^jchh/冂冂丨/
+    - xform/^jchi/冂冂／/
+    - xform/^jchj/冂冂/
+    - xform/^jcia/冂月十/
+    - xform/^jcib/冂月✕/
+    - xform/^jcic/冂月冂/
+    - xform/^jcid/冂月・/
+    - xform/^jcie/冂月乙/
+    - xform/^jcif/冂月口/
+    - xform/^jcig/冂月一/
+    - xform/^jcih/冂月丨/
+    - xform/^jcii/冂月／/
+    - xform/^jcij/冂月/
+    - xform/^jdaa/・立十/
+    - xform/^jdab/・立✕/
+    - xform/^jdac/・立冂/
+    - xform/^jdad/・立・/
+    - xform/^jdae/・立乙/
+    - xform/^jdaf/・立口/
+    - xform/^jdag/・立一/
+    - xform/^jdah/・立丨/
+    - xform/^jdai/・立／/
+    - xform/^jdaj/・立/
+    - xform/^jdba/・礻十/
+    - xform/^jdbb/・礻✕/
+    - xform/^jdbc/・礻冂/
+    - xform/^jdbd/・礻・/
+    - xform/^jdbe/・礻乙/
+    - xform/^jdbf/・礻口/
+    - xform/^jdbg/・礻一/
+    - xform/^jdbh/・礻丨/
+    - xform/^jdbi/・礻／/
+    - xform/^jdbj/・礻/
+    - xform/^jdca/・疒十/
+    - xform/^jdcb/・疒✕/
+    - xform/^jdcc/・疒冂/
+    - xform/^jdcd/・疒・/
+    - xform/^jdce/・疒乙/
+    - xform/^jdcf/・疒口/
+    - xform/^jdcg/・疒一/
+    - xform/^jdch/・疒丨/
+    - xform/^jdci/・疒／/
+    - xform/^jdcj/・疒/
+    - xform/^jdda/・亠十/
+    - xform/^jddb/・亠✕/
+    - xform/^jddc/・亠冂/
+    - xform/^jddd/・亠・/
+    - xform/^jdde/・亠乙/
+    - xform/^jddf/・亠口/
+    - xform/^jddg/・亠一/
+    - xform/^jddh/・亠丨/
+    - xform/^jddi/・亠／/
+    - xform/^jddj/・亠/
+    - xform/^jdea/・宀十/
+    - xform/^jdeb/・宀✕/
+    - xform/^jdec/・宀冂/
+    - xform/^jded/・宀・/
+    - xform/^jdee/・宀乙/
+    - xform/^jdef/・宀口/
+    - xform/^jdeg/・宀一/
+    - xform/^jdeh/・宀丨/
+    - xform/^jdei/・宀／/
+    - xform/^jdej/・宀/
+    - xform/^jdfa/・广十/
+    - xform/^jdfb/・广✕/
+    - xform/^jdfc/・广冂/
+    - xform/^jdfd/・广・/
+    - xform/^jdfe/・广乙/
+    - xform/^jdff/・广口/
+    - xform/^jdfg/・广一/
+    - xform/^jdfh/・广丨/
+    - xform/^jdfi/・广／/
+    - xform/^jdfj/・广/
+    - xform/^jdga/・丶十/
+    - xform/^jdgb/・丶✕/
+    - xform/^jdgc/・丶冂/
+    - xform/^jdgd/・丶・/
+    - xform/^jdge/・丶乙/
+    - xform/^jdgf/・丶口/
+    - xform/^jdgg/・丶一/
+    - xform/^jdgh/・丶丨/
+    - xform/^jdgi/・丶／/
+    - xform/^jdgj/・丶/
+    - xform/^jdha/・丷十/
+    - xform/^jdhb/・丷✕/
+    - xform/^jdhc/・丷冂/
+    - xform/^jdhd/・丷・/
+    - xform/^jdhe/・丷乙/
+    - xform/^jdhf/・丷口/
+    - xform/^jdhg/・丷一/
+    - xform/^jdhh/・丷丨/
+    - xform/^jdhi/・丷／/
+    - xform/^jdhj/・丷/
+    - xform/^jdia/・シ十/
+    - xform/^jdib/・シ✕/
+    - xform/^jdic/・シ冂/
+    - xform/^jdid/・シ・/
+    - xform/^jdie/・シ乙/
+    - xform/^jdif/・シ口/
+    - xform/^jdig/・シ一/
+    - xform/^jdih/・シ丨/
+    - xform/^jdii/・シ／/
+    - xform/^jdij/・シ/
+    - xform/^jeaa/乙ட十/
+    - xform/^jeab/乙ட✕/
+    - xform/^jeac/乙ட冂/
+    - xform/^jead/乙ட・/
+    - xform/^jeae/乙ட乙/
+    - xform/^jeaf/乙ட口/
+    - xform/^jeag/乙ட一/
+    - xform/^jeah/乙ட丨/
+    - xform/^jeai/乙ட／/
+    - xform/^jeaj/乙ட/
+    - xform/^jeba/乙弓十/
+    - xform/^jebb/乙弓✕/
+    - xform/^jebc/乙弓冂/
+    - xform/^jebd/乙弓・/
+    - xform/^jebe/乙弓乙/
+    - xform/^jebf/乙弓口/
+    - xform/^jebg/乙弓一/
+    - xform/^jebh/乙弓丨/
+    - xform/^jebi/乙弓／/
+    - xform/^jebj/乙弓/
+    - xform/^jeca/乙幺十/
+    - xform/^jecb/乙幺✕/
+    - xform/^jecc/乙幺冂/
+    - xform/^jecd/乙幺・/
+    - xform/^jece/乙幺乙/
+    - xform/^jecf/乙幺口/
+    - xform/^jecg/乙幺一/
+    - xform/^jech/乙幺丨/
+    - xform/^jeci/乙幺／/
+    - xform/^jecj/乙幺/
+    - xform/^jeda/乙阝十/
+    - xform/^jedb/乙阝✕/
+    - xform/^jedc/乙阝冂/
+    - xform/^jedd/乙阝・/
+    - xform/^jede/乙阝乙/
+    - xform/^jedf/乙阝口/
+    - xform/^jedg/乙阝一/
+    - xform/^jedh/乙阝丨/
+    - xform/^jedi/乙阝／/
+    - xform/^jedj/乙阝/
+    - xform/^jeea/乙刁十/
+    - xform/^jeeb/乙刁✕/
+    - xform/^jeec/乙刁冂/
+    - xform/^jeed/乙刁・/
+    - xform/^jeee/乙刁乙/
+    - xform/^jeef/乙刁口/
+    - xform/^jeeg/乙刁一/
+    - xform/^jeeh/乙刁丨/
+    - xform/^jeei/乙刁／/
+    - xform/^jeej/乙刁/
+    - xform/^jefa/乙乙十/
+    - xform/^jefb/乙乙✕/
+    - xform/^jefc/乙乙冂/
+    - xform/^jefd/乙乙・/
+    - xform/^jefe/乙乙乙/
+    - xform/^jeff/乙乙口/
+    - xform/^jefg/乙乙一/
+    - xform/^jefh/乙乙丨/
+    - xform/^jefi/乙乙／/
+    - xform/^jefj/乙乙/
+    - xform/^jega/乙乛十/
+    - xform/^jegb/乙乛✕/
+    - xform/^jegc/乙乛冂/
+    - xform/^jegd/乙乛・/
+    - xform/^jege/乙乛乙/
+    - xform/^jegf/乙乛口/
+    - xform/^jegg/乙乛一/
+    - xform/^jegh/乙乛丨/
+    - xform/^jegi/乙乛／/
+    - xform/^jegj/乙乛/
+    - xform/^jeha/乙厶十/
+    - xform/^jehb/乙厶✕/
+    - xform/^jehc/乙厶冂/
+    - xform/^jehd/乙厶・/
+    - xform/^jehe/乙厶乙/
+    - xform/^jehf/乙厶口/
+    - xform/^jehg/乙厶一/
+    - xform/^jehh/乙厶丨/
+    - xform/^jehi/乙厶／/
+    - xform/^jehj/乙厶/
+    - xform/^jeia/乙马十/
+    - xform/^jeib/乙马✕/
+    - xform/^jeic/乙马冂/
+    - xform/^jeid/乙马・/
+    - xform/^jeie/乙马乙/
+    - xform/^jeif/乙马口/
+    - xform/^jeig/乙马一/
+    - xform/^jeih/乙马丨/
+    - xform/^jeii/乙马／/
+    - xform/^jeij/乙马/
+    - xform/^jfaa/口目十/
+    - xform/^jfab/口目✕/
+    - xform/^jfac/口目冂/
+    - xform/^jfad/口目・/
+    - xform/^jfae/口目乙/
+    - xform/^jfaf/口目口/
+    - xform/^jfag/口目一/
+    - xform/^jfah/口目丨/
+    - xform/^jfai/口目／/
+    - xform/^jfaj/口目/
+    - xform/^jfba/口足十/
+    - xform/^jfbb/口足✕/
+    - xform/^jfbc/口足冂/
+    - xform/^jfbd/口足・/
+    - xform/^jfbe/口足乙/
+    - xform/^jfbf/口足口/
+    - xform/^jfbg/口足一/
+    - xform/^jfbh/口足丨/
+    - xform/^jfbi/口足／/
+    - xform/^jfbj/口足/
+    - xform/^jfca/口田十/
+    - xform/^jfcb/口田✕/
+    - xform/^jfcc/口田冂/
+    - xform/^jfcd/口田・/
+    - xform/^jfce/口田乙/
+    - xform/^jfcf/口田口/
+    - xform/^jfcg/口田一/
+    - xform/^jfch/口田丨/
+    - xform/^jfci/口田／/
+    - xform/^jfcj/口田/
+    - xform/^jfda/口四十/
+    - xform/^jfdb/口四✕/
+    - xform/^jfdc/口四冂/
+    - xform/^jfdd/口四・/
+    - xform/^jfde/口四乙/
+    - xform/^jfdf/口四口/
+    - xform/^jfdg/口四一/
+    - xform/^jfdh/口四丨/
+    - xform/^jfdi/口四／/
+    - xform/^jfdj/口四/
+    - xform/^jfea/口因十/
+    - xform/^jfeb/口因✕/
+    - xform/^jfec/口因冂/
+    - xform/^jfed/口因・/
+    - xform/^jfee/口因乙/
+    - xform/^jfef/口因口/
+    - xform/^jfeg/口因一/
+    - xform/^jfeh/口因丨/
+    - xform/^jfei/口因／/
+    - xform/^jfej/口因/
+    - xform/^jffa/口臼十/
+    - xform/^jffb/口臼✕/
+    - xform/^jffc/口臼冂/
+    - xform/^jffd/口臼・/
+    - xform/^jffe/口臼乙/
+    - xform/^jfff/口臼口/
+    - xform/^jffg/口臼一/
+    - xform/^jffh/口臼丨/
+    - xform/^jffi/口臼／/
+    - xform/^jffj/口臼/
+    - xform/^jfga/口口十/
+    - xform/^jfgb/口口✕/
+    - xform/^jfgc/口口冂/
+    - xform/^jfgd/口口・/
+    - xform/^jfge/口口乙/
+    - xform/^jfgf/口口口/
+    - xform/^jfgg/口口一/
+    - xform/^jfgh/口口丨/
+    - xform/^jfgi/口口／/
+    - xform/^jfgj/口口/
+    - xform/^jfha/口尸十/
+    - xform/^jfhb/口尸✕/
+    - xform/^jfhc/口尸冂/
+    - xform/^jfhd/口尸・/
+    - xform/^jfhe/口尸乙/
+    - xform/^jfhf/口尸口/
+    - xform/^jfhg/口尸一/
+    - xform/^jfhh/口尸丨/
+    - xform/^jfhi/口尸／/
+    - xform/^jfhj/口尸/
+    - xform/^jfia/口日十/
+    - xform/^jfib/口日✕/
+    - xform/^jfic/口日冂/
+    - xform/^jfid/口日・/
+    - xform/^jfie/口日乙/
+    - xform/^jfif/口日口/
+    - xform/^jfig/口日一/
+    - xform/^jfih/口日丨/
+    - xform/^jfii/口日／/
+    - xform/^jfij/口日/
+    - xform/^jgaa/一ፖ十/
+    - xform/^jgab/一ፖ✕/
+    - xform/^jgac/一ፖ冂/
+    - xform/^jgad/一ፖ・/
+    - xform/^jgae/一ፖ乙/
+    - xform/^jgaf/一ፖ口/
+    - xform/^jgag/一ፖ一/
+    - xform/^jgah/一ፖ丨/
+    - xform/^jgai/一ፖ／/
+    - xform/^jgaj/一ፖ/
+    - xform/^jgba/一耳十/
+    - xform/^jgbb/一耳✕/
+    - xform/^jgbc/一耳冂/
+    - xform/^jgbd/一耳・/
+    - xform/^jgbe/一耳乙/
+    - xform/^jgbf/一耳口/
+    - xform/^jgbg/一耳一/
+    - xform/^jgbh/一耳丨/
+    - xform/^jgbi/一耳／/
+    - xform/^jgbj/一耳/
+    - xform/^jgca/一镸十/
+    - xform/^jgcb/一镸✕/
+    - xform/^jgcc/一镸冂/
+    - xform/^jgcd/一镸・/
+    - xform/^jgce/一镸乙/
+    - xform/^jgcf/一镸口/
+    - xform/^jgcg/一镸一/
+    - xform/^jgch/一镸丨/
+    - xform/^jgci/一镸／/
+    - xform/^jgcj/一镸/
+    - xform/^jgda/一厂十/
+    - xform/^jgdb/一厂✕/
+    - xform/^jgdc/一厂冂/
+    - xform/^jgdd/一厂・/
+    - xform/^jgde/一厂乙/
+    - xform/^jgdf/一厂口/
+    - xform/^jgdg/一厂一/
+    - xform/^jgdh/一厂丨/
+    - xform/^jgdi/一厂／/
+    - xform/^jgdj/一厂/
+    - xform/^jgea/一雨十/
+    - xform/^jgeb/一雨✕/
+    - xform/^jgec/一雨冂/
+    - xform/^jged/一雨・/
+    - xform/^jgee/一雨乙/
+    - xform/^jgef/一雨口/
+    - xform/^jgeg/一雨一/
+    - xform/^jgeh/一雨丨/
+    - xform/^jgei/一雨／/
+    - xform/^jgej/一雨/
+    - xform/^jgfa/一西十/
+    - xform/^jgfb/一西✕/
+    - xform/^jgfc/一西冂/
+    - xform/^jgfd/一西・/
+    - xform/^jgfe/一西乙/
+    - xform/^jgff/一西口/
+    - xform/^jgfg/一西一/
+    - xform/^jgfh/一西丨/
+    - xform/^jgfi/一西／/
+    - xform/^jgfj/一西/
+    - xform/^jgga/一一十/
+    - xform/^jggb/一一✕/
+    - xform/^jggc/一一冂/
+    - xform/^jggd/一一・/
+    - xform/^jgge/一一乙/
+    - xform/^jggf/一一口/
+    - xform/^jggg/一一一/
+    - xform/^jggh/一一丨/
+    - xform/^jggi/一一／/
+    - xform/^jggj/一一/
+    - xform/^jgha/一工十/
+    - xform/^jghb/一工✕/
+    - xform/^jghc/一工冂/
+    - xform/^jghd/一工・/
+    - xform/^jghe/一工乙/
+    - xform/^jghf/一工口/
+    - xform/^jghg/一工一/
+    - xform/^jghh/一工丨/
+    - xform/^jghi/一工／/
+    - xform/^jghj/一工/
+    - xform/^jgia/一王十/
+    - xform/^jgib/一王✕/
+    - xform/^jgic/一王冂/
+    - xform/^jgid/一王・/
+    - xform/^jgie/一王乙/
+    - xform/^jgif/一王口/
+    - xform/^jgig/一王一/
+    - xform/^jgih/一王丨/
+    - xform/^jgii/一王／/
+    - xform/^jgij/一王/
+    - xform/^jhaa/丨中十/
+    - xform/^jhab/丨中✕/
+    - xform/^jhac/丨中冂/
+    - xform/^jhad/丨中・/
+    - xform/^jhae/丨中乙/
+    - xform/^jhaf/丨中口/
+    - xform/^jhag/丨中一/
+    - xform/^jhah/丨中丨/
+    - xform/^jhai/丨中／/
+    - xform/^jhaj/丨中/
+    - xform/^jhba/丨聿十/
+    - xform/^jhbb/丨聿✕/
+    - xform/^jhbc/丨聿冂/
+    - xform/^jhbd/丨聿・/
+    - xform/^jhbe/丨聿乙/
+    - xform/^jhbf/丨聿口/
+    - xform/^jhbg/丨聿一/
+    - xform/^jhbh/丨聿丨/
+    - xform/^jhbi/丨聿／/
+    - xform/^jhbj/丨聿/
+    - xform/^jhca/丨由十/
+    - xform/^jhcb/丨由✕/
+    - xform/^jhcc/丨由冂/
+    - xform/^jhcd/丨由・/
+    - xform/^jhce/丨由乙/
+    - xform/^jhcf/丨由口/
+    - xform/^jhcg/丨由一/
+    - xform/^jhch/丨由丨/
+    - xform/^jhci/丨由／/
+    - xform/^jhcj/丨由/
+    - xform/^jhda/丨小十/
+    - xform/^jhdb/丨小✕/
+    - xform/^jhdc/丨小冂/
+    - xform/^jhdd/丨小・/
+    - xform/^jhde/丨小乙/
+    - xform/^jhdf/丨小口/
+    - xform/^jhdg/丨小一/
+    - xform/^jhdh/丨小丨/
+    - xform/^jhdi/丨小／/
+    - xform/^jhdj/丨小/
+    - xform/^jhea/丨业十/
+    - xform/^jheb/丨业✕/
+    - xform/^jhec/丨业冂/
+    - xform/^jhed/丨业・/
+    - xform/^jhee/丨业乙/
+    - xform/^jhef/丨业口/
+    - xform/^jheg/丨业一/
+    - xform/^jheh/丨业丨/
+    - xform/^jhei/丨业／/
+    - xform/^jhej/丨业/
+    - xform/^jhfa/丨巾十/
+    - xform/^jhfb/丨巾✕/
+    - xform/^jhfc/丨巾冂/
+    - xform/^jhfd/丨巾・/
+    - xform/^jhfe/丨巾乙/
+    - xform/^jhff/丨巾口/
+    - xform/^jhfg/丨巾一/
+    - xform/^jhfh/丨巾丨/
+    - xform/^jhfi/丨巾／/
+    - xform/^jhfj/丨巾/
+    - xform/^jhga/丨丨十/
+    - xform/^jhgb/丨丨✕/
+    - xform/^jhgc/丨丨冂/
+    - xform/^jhgd/丨丨・/
+    - xform/^jhge/丨丨乙/
+    - xform/^jhgf/丨丨口/
+    - xform/^jhgg/丨丨一/
+    - xform/^jhgh/丨丨丨/
+    - xform/^jhgi/丨丨／/
+    - xform/^jhgj/丨丨/
+    - xform/^jhha/丨卜十/
+    - xform/^jhhb/丨卜✕/
+    - xform/^jhhc/丨卜冂/
+    - xform/^jhhd/丨卜・/
+    - xform/^jhhe/丨卜乙/
+    - xform/^jhhf/丨卜口/
+    - xform/^jhhg/丨卜一/
+    - xform/^jhhh/丨卜丨/
+    - xform/^jhhi/丨卜／/
+    - xform/^jhhj/丨卜/
+    - xform/^jhia/丨忄十/
+    - xform/^jhib/丨忄✕/
+    - xform/^jhic/丨忄冂/
+    - xform/^jhid/丨忄・/
+    - xform/^jhie/丨忄乙/
+    - xform/^jhif/丨忄口/
+    - xform/^jhig/丨忄一/
+    - xform/^jhih/丨忄丨/
+    - xform/^jhii/丨忄／/
+    - xform/^jhij/丨忄/
+    - xform/^jiaa/／ㇰ十/
+    - xform/^jiab/／ㇰ✕/
+    - xform/^jiac/／ㇰ冂/
+    - xform/^jiad/／ㇰ・/
+    - xform/^jiae/／ㇰ乙/
+    - xform/^jiaf/／ㇰ口/
+    - xform/^jiag/／ㇰ一/
+    - xform/^jiah/／ㇰ丨/
+    - xform/^jiai/／ㇰ／/
+    - xform/^jiaj/／ㇰ/
+    - xform/^jiba/／勹十/
+    - xform/^jibb/／勹✕/
+    - xform/^jibc/／勹冂/
+    - xform/^jibd/／勹・/
+    - xform/^jibe/／勹乙/
+    - xform/^jibf/／勹口/
+    - xform/^jibg/／勹一/
+    - xform/^jibh/／勹丨/
+    - xform/^jibi/／勹／/
+    - xform/^jibj/／勹/
+    - xform/^jica/／白十/
+    - xform/^jicb/／白✕/
+    - xform/^jicc/／白冂/
+    - xform/^jicd/／白・/
+    - xform/^jice/／白乙/
+    - xform/^jicf/／白口/
+    - xform/^jicg/／白一/
+    - xform/^jich/／白丨/
+    - xform/^jici/／白／/
+    - xform/^jicj/／白/
+    - xform/^jida/／⥒十/
+    - xform/^jidb/／⥒✕/
+    - xform/^jidc/／⥒冂/
+    - xform/^jidd/／⥒・/
+    - xform/^jide/／⥒乙/
+    - xform/^jidf/／⥒口/
+    - xform/^jidg/／⥒一/
+    - xform/^jidh/／⥒丨/
+    - xform/^jidi/／⥒／/
+    - xform/^jidj/／⥒/
+    - xform/^jiea/／千十/
+    - xform/^jieb/／千✕/
+    - xform/^jiec/／千冂/
+    - xform/^jied/／千・/
+    - xform/^jiee/／千乙/
+    - xform/^jief/／千口/
+    - xform/^jieg/／千一/
+    - xform/^jieh/／千丨/
+    - xform/^jiei/／千／/
+    - xform/^jiej/／千/
+    - xform/^jifa/／𥫗十/
+    - xform/^jifb/／𥫗✕/
+    - xform/^jifc/／𥫗冂/
+    - xform/^jifd/／𥫗・/
+    - xform/^jife/／𥫗乙/
+    - xform/^jiff/／𥫗口/
+    - xform/^jifg/／𥫗一/
+    - xform/^jifh/／𥫗丨/
+    - xform/^jifi/／𥫗／/
+    - xform/^jifj/／𥫗/
+    - xform/^jiga/／ノ十/
+    - xform/^jigb/／ノ✕/
+    - xform/^jigc/／ノ冂/
+    - xform/^jigd/／ノ・/
+    - xform/^jige/／ノ乙/
+    - xform/^jigf/／ノ口/
+    - xform/^jigg/／ノ一/
+    - xform/^jigh/／ノ丨/
+    - xform/^jigi/／ノ／/
+    - xform/^jigj/／ノ/
+    - xform/^jiha/／亻十/
+    - xform/^jihb/／亻✕/
+    - xform/^jihc/／亻冂/
+    - xform/^jihd/／亻・/
+    - xform/^jihe/／亻乙/
+    - xform/^jihf/／亻口/
+    - xform/^jihg/／亻一/
+    - xform/^jihh/／亻丨/
+    - xform/^jihi/／亻／/
+    - xform/^jihj/／亻/
+    - xform/^jiia/／个十/
+    - xform/^jiib/／个✕/
+    - xform/^jiic/／个冂/
+    - xform/^jiid/／个・/
+    - xform/^jiie/／个乙/
+    - xform/^jiif/／个口/
+    - xform/^jiig/／个一/
+    - xform/^jiih/／个丨/
+    - xform/^jiii/／个／/
+    - xform/^jiij/／个/
+    - xform/^jaj/十◉姓/
+    - xform/^jbj/✕◉姓/
+    - xform/^jcj/冂◉姓/
+    - xform/^jdj/・◉姓/
+    - xform/^jej/乙◉姓/
+    - xform/^jfj/口◉姓/
+    - xform/^jgj/一◉姓/
+    - xform/^jhj/丨◉姓/
+    - xform/^jij/／◉姓/
+    - xform/^jaj/十◉姓/
+    - xform/^jaa/十艹    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jab/十廿    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jac/十車    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jad/十丰    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jae/十木    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jaf/十耂    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jag/十十    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jah/十扌    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jai/十土    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jba/✕𡗗    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jbb/✕戈    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jbc/✕七    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jbd/✕力    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jbe/✕女    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jbf/✕大    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jbg/✕ナ    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jbh/✕又    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jbi/✕犭    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jca/冂匚    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jcb/冂コ    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jcc/冂山    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jcd/冂几    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jce/冂门    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jcf/冂馬    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jcg/冂冖    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jch/冂冂    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jci/冂月    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jda/・立    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jdb/・礻    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jdc/・疒    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jdd/・亠    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jde/・宀    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jdf/・广    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jdg/・丶    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jdh/・丷    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jdi/・シ    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jea/乙ட    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jeb/乙弓    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jec/乙幺    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jed/乙阝    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jee/乙刁    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jef/乙乙    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jeg/乙乛    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jeh/乙厶    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jei/乙马    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jfa/口目    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jfb/口足    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jfc/口田    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jfd/口四    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jfe/口因    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jff/口臼    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jfg/口口    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jfh/口尸    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jfi/口日    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jga/一ፖ    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jgb/一耳    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jgc/一镸    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jgd/一厂    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jge/一雨    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jgf/一西    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jgg/一一    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jgh/一工    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jgi/一王    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jha/丨中    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jhb/丨聿    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jhc/丨由    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jhd/丨小    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jhe/丨业    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jhf/丨巾    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jhg/丨丨    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jhh/丨卜    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jhi/丨忄    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jia/／ㇰ    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jib/／勹    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jic/／白    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jid/／⥒    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jie/／千    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jif/／𥫗    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jig/／ノ    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jih/／亻    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^jii/／个    🠉(一丨／)🠊(・乙口)🠋(十✕冂)◉選/
+    - xform/^ja/十    🠉(十扌土)🠊(丰木耂)🠋(艹廿車)◉姓/
+    - xform/^jb/✕    🠉(ナ又犭)🠊(力女大)🠋(𡗗戈七)◉姓/
+    - xform/^jc/冂    🠉(冖冂月)🠊(几门馬)🠋(匚コ山)◉姓/
+    - xform/^jd/・    🠉(丶丷シ)🠊(亠宀广)🠋(立礻疒)◉姓/
+    - xform/^je/乙    🠉(乛厶马)🠊(阝刁乙)🠋(ட弓幺)◉姓/
+    - xform/^jf/口    🠉(口尸日)🠊(四因臼)🠋(目足田)◉姓/
+    - xform/^jg/一    🠉(一工王)🠊(厂雨西)🠋(ፖ耳镸)◉姓/
+    - xform/^jh/丨    🠉(丨卜忄)🠊(小业巾)🠋(中聿由)◉姓/
+    - xform/^ji/／    🠉(ノ亻个)🠊(⥒千𥫗)🠋(ㇰ勹白)◉姓/
+    - xform/^j/標點 🠉(一丨／)🠊(・乙口)🠋(十✕冂)/
+    
+  comment_format: 
+    - xform/~/
+    - xform/^aj/🢇◉/
+    - xform/^bj/🢃◉/
+    - xform/^cj/🢆◉/
+    - xform/^dj/🢀◉/
+    - xform/^ej/𒊹◉/
+    - xform/^fj/🢂◉/
+    - xform/^gj/🢄◉/
+    - xform/^hj/🢁◉/
+    - xform/ihj/🢅◉/
+
+    - xform/^aa/🢇十/
+    - xform/^ba/🢃十/
+    - xform/^ca/🢆十/
+    - xform/^da/🢀十/
+    - xform/^ea/𒊹十/
+    - xform/^fa/🢂十/
+    - xform/^ga/🢄十/
+    - xform/^ha/🢁十/
+    - xform/^ia/🢅十/
+    - xform/^ab/🢇✕/
+    - xform/^bb/🢃✕/
+    - xform/^cb/🢆✕/
+    - xform/^db/🢀✕/
+    - xform/^eb/𒊹✕/
+    - xform/^fb/🢂✕/
+    - xform/^gb/🢄✕/
+    - xform/^hb/🢁✕/
+    - xform/^ib/🢅✕/
+    - xform/^ac/🢇冂/
+    - xform/^bc/🢃冂/
+    - xform/^cc/🢆冂/
+    - xform/^dc/🢀冂/
+    - xform/^ec/𒊹冂/
+    - xform/^fc/🢂冂/
+    - xform/^gc/🢄冂/
+    - xform/^hc/🢁冂/
+    - xform/^ic/🢅冂/
+    - xform/^ad/🢇．/
+    - xform/^bd/🢃．/
+    - xform/^cd/🢆．/
+    - xform/^dd/🢀．/
+    - xform/^ed/𒊹．/
+    - xform/^fd/🢂．/
+    - xform/^gd/🢄．/
+    - xform/^hd/🢁．/
+    - xform/^id/🢅．/
+    - xform/^ae/🢇乙/
+    - xform/^be/🢃乙/
+    - xform/^ce/🢆乙/
+    - xform/^de/🢀乙/
+    - xform/^ee/𒊹乙/
+    - xform/^fe/🢂乙/
+    - xform/^ge/🢄乙/
+    - xform/^he/🢁乙/
+    - xform/^ie/🢅乙/
+    - xform/^af/🢇口/
+    - xform/^bf/🢃口/
+    - xform/^cf/🢆口/
+    - xform/^df/🢀口/
+    - xform/^ef/𒊹口/
+    - xform/^ff/🢂口/
+    - xform/^gf/🢄口/
+    - xform/^hf/🢁口/
+    - xform/^if/🢅口/
+    - xform/^ag/🢇一/
+    - xform/^bg/🢃一/
+    - xform/^cg/🢆一/
+    - xform/^dg/🢀一/
+    - xform/^eg/𒊹一/
+    - xform/^fg/🢂一/
+    - xform/^gg/🢄一/
+    - xform/^hg/🢁一/
+    - xform/^ig/🢅一/
+    - xform/^ah/🢇丨/
+    - xform/^bh/🢃丨/
+    - xform/^ch/🢆丨/
+    - xform/^dh/🢀丨/
+    - xform/^eh/𒊹丨/
+    - xform/^fh/🢂丨/
+    - xform/^gh/🢄丨/
+    - xform/^hh/🢁丨/
+    - xform/^ih/🢅丨/
+    - xform/^ai/🢇／/
+    - xform/^bi/🢃／/
+    - xform/^ci/🢆／/
+    - xform/^di/🢀／/
+    - xform/^ei/𒊹／/
+    - xform/^fi/🢂／/
+    - xform/^gi/🢄／/
+    - xform/^hi/🢁／/
+    - xform/^ii/🢅／/
+    - xform/^a/🢇（十）/
+    - xform/^b/🢃（✕）/
+    - xform/^c/🢆（冂）/
+    - xform/^d/🢀（・）/
+    - xform/^e/𒊹（乙）/
+    - xform/^f/🢂（口）/
+    - xform/^g/🢄（一）/
+    - xform/^h/🢁（丨）/
+    - xform/^i/🢅（／）/
+    - xform/^j/◉/  
